@@ -4,21 +4,8 @@
 	require_once ( "config/functions.php" ) ;
 	confirm_loggedIn ( ) ;
 ?>
-
-
-
-
-<html>
 <head>
-	<meta name="viewport" content = "width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="js/footable-0.1.js" type="text/javascript"></script>
-	<link href="css/footable-0.1.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript">
-		$(function() {
-		  $('.footable').footable();
-		});
-	</script>
+<link href="css/footable-0.1.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <?php
@@ -49,7 +36,6 @@
 
 	for ( $i = 0 ; $i < $total_rows ; ++ $i )
 	{
-		if ( $i != 350 ){
 		$name = mysql_result ( $result , $i , "item_code" );
 		$quantity = mysql_result ( $result , $i , "quantity" );
 		$reserved = mysql_result ( $result , $i , "reserved" );
@@ -74,11 +60,19 @@
 
 		echo '</tr>' ;
 
-		}
 	}
 ?>
 
 </tbody>
 </table>
+
+<script type="text/javascript" src="js/footable-0.1.js" ></script>
+<script type="text/javascript">
+		$(function() {
+		  $('.footable').footable();
+		});
+</script>
+
+
 </body>
 </html>
