@@ -74,8 +74,8 @@
         <div id="tablePlace">
         </div>
 
-        <div class="progress progress-striped active">
-            <div class="bar" style="width: 40%;" id="loadingBar"></div>
+        <div class="progress progress-striped active" id="loadingBar">
+            <div class="bar" style="width: 40%;" ></div>
         </div>
 
         <form class="form-horizontal" onsubmit="login(); return false;" style="display:none;">
@@ -126,6 +126,11 @@
                         $('#tablePlace').load("table.php?i=1&total=20" , function ()  {
                             $("#loadingBar").hide(); } ) ;
                     }
+                    else
+                    {
+                        $(".form-horizontal").show();
+                        $("#loadingBar").hide();
+                    }
                 }
             });
         }
@@ -141,12 +146,15 @@
             $.ajax({
                 type:"POST",
                 url: "ajax/login.php",
+                dataType:"json",
                 data: data,
                 success: function(data){
-                    if ( data['loggedIn'] )
+                    console.log ( data ) ;
+                    if ( data["loggedIn"] == true )
                     {
                         //hide the login form and show the table
                         $(".form-horizontal").hide();
+                        $("#loadingBar").show();
                         $('#tablePlace').load("table.php?i=1&total=20" , function ()  {
                             $("#loadingBar").hide(); } ) ;
                     }
@@ -159,7 +167,6 @@
             });
         }
     </script>
-
 
     <script src="js/bootstrap.min.js"></script>
 </html>

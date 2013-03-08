@@ -41,32 +41,26 @@
 		$reserved = mysql_result ( $result , $i , "reserved" );
 		$description = mysql_result ( $result , $i , "item_description" );
 		$id = mysql_result ( $result , $i , "id" );
-		$image = mysql_result ( $result , $i , "img_link" );
 
-		if ( $i % 2 == 0 )
-			echo '<tr id="coloana'.$i.'">' ;
-		else
-			echo '<tr id="coloana'.$i.'">' ;
+		echo '<tr id="coloana'.$i.'" style="line-height:15px;">' ;
 
 		echo '<td ><a href="add_cart.php?id='.$id.'" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>' ;
 		echo '<td ><a class="btn btn-primary" href="moves.php?item='.$name.'"><i class="icon-align-left"></i>Moves</a></td>';
-		//echo '<td ><div id="btn btn-primary"><a href="moves.php?item='.$name.'" class="button">Moves</a></div></td>';
 		echo '<td ><a href="add_move.php?item='.$name.'" class="btn btn-warning"><i class="icon-ok"></i><i class="icon-remove"></i>Add move</a></td>';
-
 		echo '<td class="expand" >'. $name.'</td>' ;
 		echo '<td>'. $description.'</td>';
 		echo '<td>'. $quantity. '</td>';
 		echo '<td>'. $reserved. '</td>';
 
 		echo '</tr>' ;
-
 	}
 ?>
 
 </tbody>
 </table>
 
-<script type="text/javascript" src="js/footable-0.1.js" ></script>
+<script type="text/javascript" src="js/footable-0.1.js" >
+</script>
 <script type="text/javascript">
 		$(function() {
 		  $('.footable').footable();
