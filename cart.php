@@ -1,4 +1,5 @@
 <?php
+    require_once ( "config/session.php" ) ;
     require_once ( "config/config.php") ;
     require_once ( "config/functions.php" ) ;
 
@@ -37,15 +38,26 @@
         <!-- have to show a list of all the items, the quantity reserved and the ability to edit
             that particular item. -->
         <?php
+
             $user_id = $_SESSION [ 'user_id' ] ;
 
             $query = "SELECT `username` FROM users WHERE id='".$user_id."'" ;
             $result = mysql_query( $query , $connection ) or die ( mysql_error() ) ;
             $username = mysql_result( $result , 0 , "username" ) ;
 
+            echo $username.'<br>' ;
+
             //selecting the items that are reserved by this user and are not on an order.
             //(aka have NOT been 'checkouted')
+            //
+            //
+            //Reserved
+            //id , item_id, user_id, quantity-reserved, solved, order_no
+            //Items
+            //quantity, item_code
+
             $query = "SELECT * FROM reserved WHERE user_id='".$user_id."' AND order_no='0'" ;
+            $result = mysql_query( $query , $connection ) or die ( mysql_error() ) ;
         ?>
 
     </div> <!-- /container -->
