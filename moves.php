@@ -1,65 +1,10 @@
-<?php
 
-    require_once ( "config/functions.php" ) ;
-
-?>
-
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-
-    <title>Warehousing</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="description">
-    <meta content="" name="author"><!-- Le styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-        body {
-            padding-top:60px;
-        }
-        .sidebar-nav {
-            padding: 9px 0;
-        }
-        @media (max-width:980px) {
-            /* Enable use of floated navbar text */
-            .navbar-text.pull-right {
-                float:none;
-                padding-left:5px;
-                padding-right: 5px;
-            }
-        }
-        /* Custom container */
-        .container {
-            margin:0 auto;
-            max-width:80%;
-        }
-        .container>hr {
-            margin: 60px 0;
-        }
-    </style>
-
-    <link href="css/bootstrap-responsive.min.css" rel="stylesheet"><!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-    <![endif]-->
-    <!-- Fav and touch icons -->
-    <link href="ico/apple-touch-icon-144-precomposed.png" rel="apple-touch-icon-precomposed" sizes="144x144">
-    <link href="ico/apple-touch-icon-114-precomposed.png" rel="apple-touch-icon-precomposed" sizes="114x114">
-    <link href="ico/apple-touch-icon-72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72">
-    <link href="ico/apple-touch-icon-57-precomposed.png" rel="apple-touch-icon-precomposed">
-    <link href="ico/favicon.png" rel="shortcut icon">
-    <link href="css/footable-0.1.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <?php  echo show_menu ( $_SERVER["PHP_SELF"] ) ; ?>
-    </div>
     <div class="container">
-        <div id="dateSelection-modal" class="modal hide fade" aria-hidden="true" data-backdrop="static" style="left:10%; margin-left:0%; width:80%">
-            <div id="dateSelection" style="padding:10px;">
+        <div id="dateSelection-modal" class="modal hide fade" aria-hidden="true" style="left:10%; margin-left:0%; width:80%">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div id="dateSelection" class="modal-body">
 
                 <form class="form-horizontal" onsubmit="processForm(); return false;">
                     <div class="control-group" id="starting_date">
@@ -198,20 +143,17 @@
         </div>
 
         <div id="data-modal" class="modal hide fade" aria-hidden="true" data-backdrop="static">
-            <div id="data"></div>
-            <div id="modal-footer" style="padding:10px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div id="data" class="modal-body"></div>
+            <div id="modal-footer" style="padding:10px">
                 <button data-dismiss="modal" class="btn" aria-hidden="true" onclick="showDateModal()">Close</button>
             </div>
 
         </div>
 
     </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <script type="text/javascript">
         function showDateModal ( )
@@ -250,6 +192,3 @@
         }
 
     </script>
-
-    <script src="js/bootstrap.min.js"></script>
-</html>

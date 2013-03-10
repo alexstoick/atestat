@@ -21,7 +21,7 @@
 	                <div class="nav-collapse collapse">
 	                    <ul class="nav">
 	                        <li class="'.isActive ( 'index.php' , $page ).'"><a href="index.php">Home</a></li>
-	                        <li class="'.isActive ( 'moves.php' , $page ).'"><a href="moves.php">Moves</a></li>
+	                        <li class="'.isActive ( 'cart.php' , $page ).'"><a href="cart.php">Cart</a></li>
 	                        <li><a href="#contact">Contact</a></li>
 	                    </ul>
 	                </div>

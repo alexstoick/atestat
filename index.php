@@ -84,7 +84,7 @@
                 </div>
             </div>
         </form>
-        <div id="data">
+        <div id="index-data">
         </div>
     </div> <!-- /container -->
 
@@ -103,7 +103,7 @@
 
         function loadMoves ( i )
         {
-            $("#data").load ( "moves.php?id=" + i ) ;
+            $("#index-data").load ( "moves.php?id=" + i ) ;
         }
 
         function check_if_loggedIn ( )
