@@ -45,7 +45,8 @@
 		echo '<tr id="coloana'.$i.'" style="line-height:15px;">' ;
 
 		echo '<td ><a href="add_cart.php?id='.$id.'" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>' ;
-		echo '<td ><a class="btn btn-primary" href="moves.php?id='.$id.'"><i class="icon-align-left"></i>Moves</a></td>';
+		echo '<td ><a class="btn btn-primary" onclick="loadMoves('.$id.')"><i class="icon-align-left"></i>Moves</a></td>';
+		//echo '<td ><a class="btn btn-primary" href="moves.php?id='.$id.'"><i class="icon-align-left"></i>Moves</a></td>';
 		echo '<td ><a href="add_move.php?item='.$name.'" class="btn btn-warning"><i class="icon-ok"></i><i class="icon-remove"></i>Add move</a></td>';
 		echo '<td class="expand" >'. $name.'</td>' ;
 		echo '<td>'. $description.'</td>';

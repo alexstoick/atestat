@@ -84,7 +84,8 @@
                 </div>
             </div>
         </form>
-
+        <div id="data">
+        </div>
     </div> <!-- /container -->
 
     <!-- Le javascript
@@ -99,6 +100,11 @@
         $(function(){
             check_if_loggedIn ( );
         });
+
+        function loadMoves ( i )
+        {
+            $("#data").load ( "moves.php?id=" + i ) ;
+        }
 
         function check_if_loggedIn ( )
         {
