@@ -37,6 +37,14 @@
 
         <!-- have to show a list of all the items, the quantity reserved and the ability to edit
             that particular item. -->
+        <table>
+            <tr>
+                <td style="align:center;text-align:center;"> Username</td>
+                <td style="align:center;text-align:center;"> Item description </td>
+                <td style="align:center;text-align:center;"> Quantity stock </td>
+                <td style="align:center;text-align:center;"> Quantity reserved </td>
+                <td style="align:center;text-align:center;"> Date </td>
+            </tr>
         <?php
 
             $user_id = $_SESSION [ 'user_id' ] ;
@@ -56,10 +64,37 @@
             //Items
             //quantity, item_code
 
+            $query = "SELECT `username` FROM users WHERE id='".$user_id."'" ;
+            $result = mysql_query ( $query , $connection ) or die ( mysql_error() ) ;
+            $username = mysql_result( $result , 0 , "username" ) ;
+
             $query = "SELECT * FROM reserved WHERE user_id='".$user_id."' AND order_no='0'" ;
             $result = mysql_query( $query , $connection ) or die ( mysql_error() ) ;
-        ?>
+            $length = mysql_num_rows( $result ) ;
 
+            for ( $i = 0 ; $i < $length ; ++ $i )
+            {
+                $item_id = mysql_result($result, $i , "item_id" ) ;
+                $quantity_reserved = mysql_result ( $result , $i , "quantity" ) ;
+                $date = mysql_result( $result , $i , "date") ;
+
+                $query = "SELECT `item_code`,`quantity` FROM items WHERE id='".$item_id."'";
+                $local_query = mysql_query( $query , $connection ) or die ( mysql_error() ) ;
+
+                $item_description = mysql_result( $local_query, 0 , "item_code" ) ;
+                $quantity_stock = mysql_result( $local_query , 0 , "quantity" ) ;
+
+                echo '<tr>' ;
+                echo '<td style="align:center;text-align:center;">'.$username.'</td>' ;
+                echo '<td style="align:center;text-align:center;">'.$item_description.'</td>' ;
+                echo '<td style="align:center;text-align:center;">'.$quantity_reserved.'</td>' ;
+                echo '<td style="align:center;text-align:center;">'.$quantity_stock.'</td>' ;
+                echo '<td style="align:center;text-align:center;">'.$date.'</td>' ;
+                echo '</tr>' ;
+
+            }
+        ?>
+        </table>
     </div> <!-- /container -->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
