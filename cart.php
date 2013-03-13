@@ -37,14 +37,17 @@
 
         <!-- have to show a list of all the items, the quantity reserved and the ability to edit
             that particular item. -->
-        <table>
-            <tr>
-                <td style="align:center;text-align:center;"> Username</td>
-                <td style="align:center;text-align:center;"> Item description </td>
-                <td style="align:center;text-align:center;"> Quantity stock </td>
-                <td style="align:center;text-align:center;"> Quantity reserved </td>
-                <td style="align:center;text-align:center;"> Date </td>
-            </tr>
+        <table class="table">
+            <thead style="background-color: rgb(130, 185, 236)">
+                <tr>
+                    <th style="align:center;text-align:center;"> Username</th>
+                    <th style="align:center;text-align:center;"> Item description </th>
+                    <th style="align:center;text-align:center;"> Quantity stock </th>
+                    <th style="align:center;text-align:center;"> Quantity reserved </th>
+                    <th style="align:center;text-align:center;"> Date of reservation</th>
+                </tr>
+            </thead>
+            <tbody>
         <?php
 
             $user_id = $_SESSION [ 'user_id' ] ;
@@ -53,7 +56,6 @@
             $result = mysql_query( $query , $connection ) or die ( mysql_error() ) ;
             $username = mysql_result( $result , 0 , "username" ) ;
 
-            echo $username.'<br>' ;
 
             //selecting the items that are reserved by this user and are not on an order.
             //(aka have NOT been 'checkouted')
@@ -84,17 +86,23 @@
                 $item_description = mysql_result( $local_query, 0 , "item_code" ) ;
                 $quantity_stock = mysql_result( $local_query , 0 , "quantity" ) ;
 
-                echo '<tr>' ;
+                if ( $i % 2 )
+                    echo '<tr class="success">' ;
+                else
+                    echo '<tr class="error">' ;
+
                 echo '<td style="align:center;text-align:center;">'.$username.'</td>' ;
                 echo '<td style="align:center;text-align:center;">'.$item_description.'</td>' ;
-                echo '<td style="align:center;text-align:center;">'.$quantity_reserved.'</td>' ;
                 echo '<td style="align:center;text-align:center;">'.$quantity_stock.'</td>' ;
+                echo '<td style="align:center;text-align:center;">'.$quantity_reserved.'</td>' ;
                 echo '<td style="align:center;text-align:center;">'.$date.'</td>' ;
                 echo '</tr>' ;
-
             }
         ?>
+            </tbody>
         </table>
+        <button class="btn">Place order</button>
+        <button class="btn disabled"> Export!</button>
     </div> <!-- /container -->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
