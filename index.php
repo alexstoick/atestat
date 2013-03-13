@@ -73,9 +73,14 @@
             check_if_loggedIn ( );
         });
 
+        function addToCart ( i )
+        {
+            $("#index-data").load ( "modal/add_cart.php?id=" + i ) ;
+        }
+
         function loadMoves ( i )
         {
-            $("#index-data").load ( "moves.php?id=" + i ) ;
+            $("#index-data").load ( "modal/moves.php?id=" + i ) ;
         }
 
         function check_if_loggedIn ( )
