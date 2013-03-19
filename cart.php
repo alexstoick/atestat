@@ -65,26 +65,22 @@
             //id , item_id, user_id, quantity-reserved, solved, order_no
             //Items
             //quantity, item_code
+            //
+            //
 
-            $query = "SELECT `username` FROM users WHERE id='".$user_id."'" ;
+            $query = "SELECT reserved.item_id, reserved.quantity AS  `reserved quantity` , users.username, items.item_code, items.quantity, reserved.date
+                        FROM reserved, users, items
+                        WHERE  `user_id` ='".$user_id."'
+                        AND items.id = reserved.item_id AND `order_no`=0" ;
             $result = mysql_query ( $query , $connection ) or die ( mysql_error() ) ;
-            $username = mysql_result( $result , 0 , "username" ) ;
-
-            $query = "SELECT * FROM reserved WHERE user_id='".$user_id."' AND order_no='0'" ;
-            $result = mysql_query( $query , $connection ) or die ( mysql_error() ) ;
             $length = mysql_num_rows( $result ) ;
 
             for ( $i = 0 ; $i < $length ; ++ $i )
             {
-                $item_id = mysql_result($result, $i , "item_id" ) ;
-                $quantity_reserved = mysql_result ( $result , $i , "quantity" ) ;
+                $quantity_reserved = mysql_result ( $result , $i , "reserved quantity" ) ;
                 $date = mysql_result( $result , $i , "date") ;
-
-                $query = "SELECT `item_code`,`quantity` FROM items WHERE id='".$item_id."'";
-                $local_query = mysql_query( $query , $connection ) or die ( mysql_error() ) ;
-
-                $item_description = mysql_result( $local_query, 0 , "item_code" ) ;
-                $quantity_stock = mysql_result( $local_query , 0 , "quantity" ) ;
+                $item_description = mysql_result( $result, 0 , "item_code" ) ;
+                $quantity_stock = mysql_result( $result , 0 , "quantity" ) ;
 
                 if ( $i % 2 )
                     echo '<tr class="success">' ;
