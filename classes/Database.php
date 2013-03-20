@@ -16,7 +16,7 @@ class Database {
 		}
 	}
 
-	public function query_database ( $query , $params = array () )
+	public function query ( $query , $params = array () )
 	{
 		$prepared_statement = self::$db -> prepare ($query) ;
 		$prepared_statement -> execute ( $params ) ;

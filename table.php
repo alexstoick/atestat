@@ -10,13 +10,14 @@
 <body>
 <?php
 
-	$i = $_GET ['i' ];
-	$total = $_GET ['total'];
-	$query = "SELECT * FROM items WHERE `quantity`!= 0 AND ".$i."<=`id` AND `id`<".$total  ;
-	$result = mysql_query ( $query , $connection ) or die ( mysql_error () ) ;
-	$total_rows =mysql_num_rows ( $result ) ;
+	$start = $_GET ['i' ];
+	$final = $_GET ['total'];
+
+	$query = "SELECT * FROM items WHERE `quantity`!= 0 AND :start <=`id` AND `id`< :final" ;
+
+	$result = $db -> query ( $query , array ( "start" => $start , "final" => $final ) ) ;
 ?>
-<h4>Displaying items from <?php echo $i; ?> to <?php echo $total; ?></h4>
+<h4>Displaying items from <?php echo $start; ?> to <?php echo $final; ?></h4>
 <table class="footable">
 	<thead>
 		<tr>
@@ -33,27 +34,11 @@
 
 <?php
 
-
-	for ( $i = 0 ; $i < $total_rows ; ++ $i )
+	foreach ( $result as $row )
 	{
-		$name = mysql_result ( $result , $i , "item_code" );
-		$quantity = mysql_result ( $result , $i , "quantity" );
-		$reserved = mysql_result ( $result , $i , "reserved" );
-		$description = mysql_result ( $result , $i , "item_description" );
-		$id = mysql_result ( $result , $i , "id" );
+		$item = new Item ( $row ) ;
+		$item -> printTableLine ( ) ;
 
-		echo '<tr id="coloana'.$i.'" style="line-height:15px;">' ;
-
-		echo '<td ><a onclick="addToCart('.$id.')" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>' ;
-		echo '<td ><a class="btn btn-primary" onclick="loadMoves('.$id.')"><i class="icon-align-left"></i>Moves</a></td>';
-		//echo '<td ><a class="btn btn-primary" href="moves.php?id='.$id.'"><i class="icon-align-left"></i>Moves</a></td>';
-		echo '<td ><a href="add_move.php?item='.$name.'" class="btn btn-warning"><i class="icon-ok"></i><i class="icon-remove"></i>Add move</a></td>';
-		echo '<td class="expand" >'. $name.'</td>' ;
-		echo '<td>'. $description.'</td>';
-		echo '<td>'. $quantity. '</td>';
-		echo '<td>'. $reserved. '</td>';
-
-		echo '</tr>' ;
 	}
 ?>
 
