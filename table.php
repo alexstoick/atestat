@@ -38,7 +38,6 @@
 	{
 		$item = new Item ( $row ) ;
 		$item -> printTableLine ( ) ;
-
 	}
 ?>
 

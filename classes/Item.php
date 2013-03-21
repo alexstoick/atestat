@@ -21,7 +21,7 @@ class Item {
 	public function printTableLine ()
 	{
 
-		echo '<tr style="line-height:15px">' ;
+		echo '<tr id="coloana'.$this->id.'" style="line-height:15px">' ;
 
 		echo '<td ><a onclick="addToCart('.$this->id.')" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>' ;
 		echo '<td ><a class="btn btn-primary" onclick="loadMoves('.$this->id.')"><i class="icon-align-left"></i>Moves</a></td>';
