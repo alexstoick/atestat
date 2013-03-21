@@ -90,7 +90,6 @@
 				url: "ajax/login.php",
 				dataType:"json",
 				success: function(data){
-					console.log ( data ) ;
 					if ( data["loggedIn"] == true )
 					{
 						$(".form-horizontal").hide();
@@ -113,20 +112,17 @@
 			encrypted_password = CryptoJS.SHA1(password); ;
 
 			data = 'username='+username+'&password='+encrypted_password ;
-
 			$.ajax({
 				type:"POST",
-				url: "/ajax/login.php",
+				url: "ajax/login.php",
 				dataType:"json",
 				data: data,
 				success: function(data){
-					console.log ( data+ '1333' ) ;
 					if ( data["loggedIn"] == true )
 					{
 						//hide the login form and show the table
 						$(".form-horizontal").hide();
 						$("#loadingBar").show();
-						console.log ( '123' ) ;
 						$('#tablePlace').load("table.php?i=1&total=20" , function ()  {
 							$("#loadingBar").hide(); } ) ;
 					}
