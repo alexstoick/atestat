@@ -135,6 +135,11 @@
 				}
 			});
 		}
+
+		function logout ( )
+		{
+			$.ajax ( { url: "ajax/logout.php"  , success: function () { $("#tablePlace").hide ( ) ; check_if_loggedIn () ; } } ) ;
+		}
 	</script>
 
 	<script src="js/bootstrap.min.js"></script>

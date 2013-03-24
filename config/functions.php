@@ -40,11 +40,3 @@
 		return '' ;
 	}
 ?>
-
-<script type="text/javascript">
-
-	function logout ( )
-	{
-		$.ajax ( { url: "ajax/logout.php"  , success: function () { $("#tablePlace").hide ( ) ; check_if_loggedIn () ; } } ) ;
-	}
-</script>

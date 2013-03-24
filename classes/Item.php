@@ -7,9 +7,11 @@ class Item {
 	private $reserved ;
 	private $description ;
 	private $id ;
+	private static $db ;
 
+	//////PUBLIC function
 
-	function __construct ( $array )
+	public function __construct ( $array )
 	{
 		$this -> id = $array ['id'] ;
 		$this -> name = $array [ 'item_code'] ;
@@ -33,6 +35,36 @@ class Item {
 
 		echo '</tr>' ;
 	}
+
+	public function getName ( )
+	{
+		return $this->name ;
+	}
+
+	public function getQuantity()
+	{
+		return $this->quantity;
+	}
+
+	public function getDescription()
+	{
+		return $this->description;
+	}
+
+
+	//////STATIC functions
+
+	public static function getItemWithId ( $id )
+	{
+		$db = new Database () ;
+		$query = "SELECT * FROM items WHERE `id`= :item_id" ;
+		$query_result = $db -> query ( $query , array ( "item_id" => $id ) ) ;
+		$newItem = new Item ( $query_result[0] ) ;
+		return $newItem ;
+	}
+
+
+
 }
 
 ?>
