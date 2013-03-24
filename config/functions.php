@@ -22,7 +22,7 @@
 	                    <ul class="nav">
 	                        <li class="'.isActive ( 'index.php' , $page ).'"><a href="index.php">Home</a></li>
 	                        <li class="'.isActive ( 'cart.php' , $page ).'"><a href="cart.php">Cart</a></li>
-	                        <li><a href="#contact">Contact</a></li>
+	                        <li><a href="#" onclick="logout()">Logout</a></li>
 	                    </ul>
 	                </div>
 	                <!--/.nav-collapse -->
@@ -38,3 +38,11 @@
 		return '' ;
 	}
 ?>
+
+<script type="text/javascript">
+
+	function logout ( )
+	{
+		$.ajax ( { url: "ajax/logout.php"  , success: function () { $("#tablePlace").hide ( ) ; check_if_loggedIn () ; } } ) ;
+	}
+</script>

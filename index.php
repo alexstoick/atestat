@@ -124,6 +124,7 @@
 						$(".form-horizontal").hide();
 						$("#loadingBar").show();
 						$('#tablePlace').load("table.php?i=1&total=20" , function ()  {
+							$('#tablePlace').show();
 							$("#loadingBar").hide(); } ) ;
 					}
 					else
