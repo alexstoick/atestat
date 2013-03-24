@@ -52,9 +52,11 @@
 
             $user_id = $_SESSION [ 'user_id' ] ;
 
-            $query = "SELECT `username` FROM users WHERE id='".$user_id."'" ;
-            $result = mysql_query( $query , $connection ) or die ( mysql_error() ) ;
-            $username = mysql_result( $result , 0 , "username" ) ;
+            $query = "SELECT `username` FROM users WHERE id= :user_id" ;
+
+            $result = $db -> query ( $query , array ( "user_id" => $user_id ) ) ;
+
+            $username = $result [0]['username'] ;
 
 
             //selecting the items that are reserved by this user and are not on an order.
@@ -72,15 +74,15 @@
                         FROM reserved, users, items
                         WHERE  `user_id` ='".$user_id."'
                         AND items.id = reserved.item_id AND `order_no`=0" ;
-            $result = mysql_query ( $query , $connection ) or die ( mysql_error() ) ;
-            $length = mysql_num_rows( $result ) ;
 
-            for ( $i = 0 ; $i < $length ; ++ $i )
+            $result = $db -> query ( $query , array ( "user_id" => $user_id ) ) ;
+            $i = 0 ;
+            foreach ( $result as $row )
             {
-                $quantity_reserved = mysql_result ( $result , $i , "reserved quantity" ) ;
-                $date = mysql_result( $result , $i , "date") ;
-                $item_description = mysql_result( $result, 0 , "item_code" ) ;
-                $quantity_stock = mysql_result( $result , 0 , "quantity" ) ;
+            	$quantity_reserved = $row [ "reserved quantity" ] ;
+            	$date = $row [ "date" ] ;
+            	$item_description = $row ["item_code" ] ;
+            	$quantity_stock = $row [ 'quantity' ] ;
 
                 if ( $i % 2 )
                     echo '<tr class="success">' ;
@@ -93,6 +95,7 @@
                 echo '<td style="align:center;text-align:center;">'.$quantity_reserved.'</td>' ;
                 echo '<td style="align:center;text-align:center;">'.$date.'</td>' ;
                 echo '</tr>' ;
+                ++ $i;
             }
         ?>
             </tbody>
