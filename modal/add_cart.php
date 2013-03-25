@@ -14,7 +14,7 @@
 	<div class="modal-body">
 		<p> <b>Item name:</b> <?= $item->getName(); ?> </p>
 		<p> <b>Qquantity currently available:</b> <?= $item->getQuantity() ; ?> </p>
-		<form onsubmit="validateAndSendForm(); return false;" class="form-horizontal">
+		<form onsubmit="sendCartForm(); return false;" class="form-horizontal">
 			<div class="control-group cart" id="to_reserve_group" >
 				<label class="control-label" for="reserve" style="text-align:left;">Quantity to reserve: </label>
 				<div class="controls">
@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<div id="exceededQuantity" style="display:none;" class="alert alert-block"> There are not enough materials to reserve! </div>
-			<a class="btn btn-primary" id="submitToCart" onclick="validateCart()">Add to cart </a>
+			<button type="submit" class="btn btn-primary" id="submitToCart">Add to cart </button>
 			<!--<p> Submit button that turns green when request is sucessful then the modal fades away.</p>-->
 		</form>
 	</div>
@@ -35,6 +35,8 @@
         $("#cart-modal").modal('show');
     });
 
+    var quantity_to_reserve ;
+
 	function validateCart ( )
 	{
 		quantity_to_reserve = $("#reserve").val () ;
@@ -43,15 +45,27 @@
 			$(".cart").addClass ( "error" ) ;
 			$("#exceededQuantity").show () ;
 			$("#submitToCart").addClass ( "disabled") ;
+			return false ;
 		}
 		else
 		{
 			$("#exceededQuantity").hide();
 			$(".cart").removeClass ("error") ;
 			$("#submitToCart").removeClass ( "disabled") ;
+			return true ;
 		}
-		console.log ( quantity_to_reserve + " " + quantity_available ) ;
 	}
-
+	function sendCartForm ( )
+	{
+		data = "item_id="+ <?= $item_id; ?> + "&reserveQuantity=" + quantity_to_reserve ;
+		console.log ( data ) ;
+		$.ajax ( {
+			url:"ajax/cartToDB.php" ,
+			type:"POST",
+			dataType:"json",
+			data:data,
+			success: function (data) { console.log ( data) ;}
+		}) ;
+	}
 
 </script>
