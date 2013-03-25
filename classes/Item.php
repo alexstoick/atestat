@@ -51,6 +51,11 @@ class Item {
 		return $this->description;
 	}
 
+	public function getReserved()
+	{
+		return $this->reserved;
+	}
+
 
 	//////STATIC functions
 
@@ -62,9 +67,6 @@ class Item {
 		$newItem = new Item ( $query_result[0] ) ;
 		return $newItem ;
 	}
-
-
-
 }
 
 ?>
