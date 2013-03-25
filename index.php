@@ -42,13 +42,13 @@
 		</div>
 
 		<form class="form-horizontal" onsubmit="login(); return false;" style="display:none;">
-			<div class="control-group" id="username_group">
+			<div class="control-group login" id="username_group">
 				<label class="control-label" for="username">Username</label>
 				<div class="controls">
 					<input type="text" id="username" placeholder="Email">
 				</div>
 			</div>
-			<div class="control-group" id="password_group">
+			<div class="control-group login" id="password_group">
 				<label class="control-label" for="password">Password</label>
 				<div class="controls">
 					<input type="password" id="password" placeholder="Password">
@@ -76,6 +76,7 @@
 		function addToCart ( i )
 		{
 			$("#index-data").load ( "modal/add_cart.php?id=" + i ) ;
+
 		}
 
 		function loadMoves ( i )
@@ -130,7 +131,7 @@
 					else
 					{
 						//add a red frame to the user&password
-						$(".control-group").addClass ( "error" ) ;
+						$(".control-group-login").addClass ( "error" ) ;
 					}
 				}
 			});
@@ -140,6 +141,7 @@
 		{
 			$.ajax ( { url: "ajax/logout.php"  , success: function () { $("#tablePlace").hide ( ) ; check_if_loggedIn () ; } } ) ;
 		}
+
 	</script>
 
 	<script src="js/bootstrap.min.js"></script>
