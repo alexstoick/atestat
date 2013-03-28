@@ -18,6 +18,7 @@ class Item {
 		$this -> reserved = $array [ 'reserved' ] ;
 		$this -> description = $array [ 'item_description' ] ;
 		$this -> quantity = $array [ 'quantity' ] ;
+		Item::$db = new Database () ;
 	}
 
 	public function printTableLine ()
@@ -34,6 +35,18 @@ class Item {
 		echo '<td>'. $this->reserved. '</td>';
 
 		echo '</tr>' ;
+	}
+
+	public function setQuantity ( $quantity_new )
+	{
+		$query = "UPDATE items SET `quantity`= :quantity WHERE `id`= :item_id" ;
+		Item::$db -> query ( $query , array ( "quantity" => $quantity_new , "item_id" => $this->id) ) ;
+	}
+
+	public function setReserved ( $reserved_new )
+	{
+		$query = "UPDATE items SET `reserved`= :reserved WHERE `id`= :item_id" ;
+		Item::$db -> query ( $query , array ( "reserved" => $reserved_new ,"item_id" => $this->id ) ) ;
 	}
 
 	public function getName ( )
@@ -61,9 +74,9 @@ class Item {
 
 	public static function getItemWithId ( $id )
 	{
-		$db = new Database () ;
+		Item::$db = new Database () ;
 		$query = "SELECT * FROM items WHERE `id`= :item_id" ;
-		$query_result = $db -> query ( $query , array ( "item_id" => $id ) ) ;
+		$query_result = Item::$db -> query ( $query , array ( "item_id" => $id ) ) ;
 		$newItem = new Item ( $query_result[0] ) ;
 		return $newItem ;
 	}

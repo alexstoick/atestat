@@ -11,10 +11,10 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     </div>
-	<div class="modal-body">
-		<p> <b>Item name:</b> <?= $item->getName(); ?> </p>
-		<p> <b>Qquantity currently available:</b> <?= $item->getQuantity() ; ?> </p>
-		<form onsubmit="sendCartForm(); return false;" class="form-horizontal">
+	<div class="modal-body" id="cart-modal-body">
+		<form onsubmit="sendCartForm(); return false;" class="form-horizontal" id="submitCartForm">
+			<p> <b>Item name:</b> <?= $item->getName(); ?> </p>
+			<p> <b>Qquantity currently available:</b> <?= $item->getQuantity() ; ?> </p>
 			<div class="control-group cart" id="to_reserve_group" >
 				<label class="control-label" for="reserve" style="text-align:left;">Quantity to reserve: </label>
 				<div class="controls">
@@ -25,7 +25,9 @@
 			<button type="submit" class="btn btn-primary" id="submitToCart">Add to cart </button>
 			<!--<p> Submit button that turns green when request is sucessful then the modal fades away.</p>-->
 		</form>
+		<div id="sucessfullyAddedToCart" style="display:none" class="alert alert-success"> The change was sucessful! </div>
 	</div>
+
 </div>
 
 <script type="text/javascript">
@@ -57,14 +59,18 @@
 	}
 	function sendCartForm ( )
 	{
-		data = "item_id="+ <?= $item_id; ?> + "&reserveQuantity=" + quantity_to_reserve ;
+		data = 'item_id='+ <?= $item_id; ?> + '&reserveQuantity=' + quantity_to_reserve ;
 		console.log ( data ) ;
 		$.ajax ( {
 			url:"ajax/cartToDB.php" ,
 			type:"POST",
 			dataType:"json",
 			data:data,
-			success: function (data) { console.log ( data) ;}
+			success: function (data) {
+				$("#submitCartForm").hide();
+				$("#sucessfullyAddedToCart").show () ;
+				setTimeout ( function () {$("#cart-modal").modal('hide');}, 1500 ) ;
+			}
 		}) ;
 	}
 
