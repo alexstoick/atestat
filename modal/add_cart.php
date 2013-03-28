@@ -14,7 +14,7 @@
 	<div class="modal-body" id="cart-modal-body">
 		<form onsubmit="sendCartForm(); return false;" class="form-horizontal" id="submitCartForm">
 			<p> <b>Item name:</b> <?= $item->getName(); ?> </p>
-			<p> <b>Qquantity currently available:</b> <?= $item->getQuantity() ; ?> </p>
+			<p> <b>Quantity currently available:</b> <?= $item->getQuantity() ; ?> </p>
 			<div class="control-group cart" id="to_reserve_group" >
 				<label class="control-label" for="reserve" style="text-align:left;">Quantity to reserve: </label>
 				<div class="controls">

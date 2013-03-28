@@ -1,6 +1,7 @@
 <?php
 
 	require_once '../config/config.php';
+	require_once '../config/session.php';
 
 	$result = array ( );
 
@@ -18,5 +19,17 @@
 	$item -> setReserved ( $reserved_new ) ;
 
 	$result['success'] = true ;
+
+
+	$user_id = $_SESSION [ 'user_id' ] ;
+
+	$query = "INSERT INTO reserved
+				(item_id,user_id,quantity,solved) VALUES ( :item_id, :user_id, :quantityReserved, 0 )" ;
+
+	$array = array( "item_id" => $item_id , "user_id" => $user_id , "quantityReserved" => $reserveQuantity ) ;
+
+	$db -> query ( $query , $array ) ;
+
+
 	echo json_encode( $result ) ;
 ?>
