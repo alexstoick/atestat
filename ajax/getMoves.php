@@ -40,9 +40,9 @@
 
 	echo '<table>
 			<tr>
-				<td width="20%" bgcolor="#999999" style="align:center;text-align:center;"><b> Where </b></td>
-				<td width="15%" bgcolor="#999999" style="align:center;text-align:center;"><b> Time </b></td>
-				<td width="15%" bgcolor="#999999" style="align:center;text-align:center;"><b> Quantity </b></td>
+				<td width="20%" bgcolor="#999999" style="text-align:center;"><b> Where </b></td>
+				<td width="15%" bgcolor="#999999" style="text-align:center;"><b> Time </b></td>
+				<td width="15%" bgcolor="#999999" style="text-align:center;"><b> Quantity </b></td>
 			</tr>';
 
 

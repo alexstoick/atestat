@@ -2,7 +2,6 @@
     require_once ( "config/session.php" ) ;
     require_once ( "config/config.php") ;
     require_once ( "config/functions.php" ) ;
-
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +25,6 @@
     <link href="ico/apple-touch-icon-72-precomposed.png" rel="apple-touch-icon-precomposed" sizes="72x72">
     <link href="ico/apple-touch-icon-57-precomposed.png" rel="apple-touch-icon-precomposed">
     <link href="ico/favicon.png" rel="shortcut icon">
-    <link href="css/footable-0.1.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -40,11 +38,11 @@
         <table class="table">
             <thead style="background-color: rgb(130, 185, 236)">
                 <tr>
-                    <th style="align:center;text-align:center;"> Username</th>
-                    <th style="align:center;text-align:center;"> Item description </th>
-                    <th style="align:center;text-align:center;"> Quantity stock </th>
-                    <th style="align:center;text-align:center;"> Quantity reserved </th>
-                    <th style="align:center;text-align:center;"> Date of reservation</th>
+                    <th style="text-align:center;"> Username</th>
+                    <th style="text-align:center;"> Item description </th>
+                    <th style="text-align:center;"> Quantity stock </th>
+                    <th style="text-align:center;"> Quantity reserved </th>
+                    <th style="text-align:center;"> Date of reservation</th>
                 </tr>
             </thead>
             <tbody>

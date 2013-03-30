@@ -21,7 +21,8 @@
 					<div class="nav-collapse collapse">
 						<ul class="nav">
 							<li class="'.isActive ( 'index.php' , $page ).'"><a href="index.php">Home</a></li>
-							<li class="'.isActive ( 'cart.php' , $page ).'"><a href="cart.php">Cart</a></li>';
+							<li class="'.isActive ( 'cart.php' , $page ).'"><a href="cart.php">Cart</a></li>
+							<li class="'.isActive ( 'order.php' , $page ).'"><a href="order.php">Orders</a></li>';
 		if ( isActive ( 'index.php' , $page ) )
 			echo '<li><a href="#" onclick="logout()">Logout</a></li>';
 
