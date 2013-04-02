@@ -69,10 +69,10 @@
 					echo '<td>'.$description.'</td>' ;
 					echo '<td>'.$reservedQuantity.'</td>' ;
 					echo '<td>'.$date.'</td>' ;
-					// if ( $solved )
-					// 	echo '<td><button class="btn disabled">Confirmed!</button></td>' ;
-					// else
-					 	echo '<td><button class="btn" onclick="showConfirmModal( '.$reservedId.' ); return false;">Confirm!</button></td>' ;
+					if ( $solved )
+						echo '<td><button class="btn disabled">Confirmed!</button></td>' ;
+					else
+					 	echo '<td><button id='.$reservedId.' class="btn" onclick="showConfirmModal( '.$reservedId.' ); return false;">Confirm!</button></td>' ;
 					echo '</tr>' ;
 					++ $i ;
 				}
@@ -102,6 +102,10 @@
 	function showConfirmModal ( reservedId )
 	{
 		$("#information").load ( "ajax/confirm_sending.php?id=" + reservedId ) ;
+		//have to change text to 'confirmed' & disable the onclick effect.
+		$("#"+reservedId).addClass ( "disabled" ) ;
+		//now all i do is correctly adding the disabled class.
+
 		$("#inspectOrder-modal").modal('hide') ;
 		$("#confirmSending-modal").modal('show') ;
 	}
