@@ -6,6 +6,15 @@
 	$user_id = $_SESSION ['user_id'] ;
 	$username = $_SESSION ['username'] ;
 
+	function disabled ($solved)
+	{
+		if ( $solved )
+		{
+			return 'disabled' ;
+		}
+		return '' ;
+	}
+
 ?>
 
 
@@ -29,9 +38,11 @@
 			<?php
 
 				$query = "SELECT reserved.date,
+							reserved.id,
 							reserved.quantity AS `reserved quantity`,
 							items.item_code AS `name`,
-							items.item_description AS `description`
+							items.item_description AS `description`,
+							reserved.solved AS `solved`
 							FROM reserved,items
 							WHERE reserved.user_id = :user_id
 							AND order_no = :order_no
@@ -45,10 +56,12 @@
 				foreach ( $query_result as $row )
 				{
 					//date, reserved quantity, name, description
+					$reservedId = $row['id'] ;
 					$date = $row['date'] ;
 					$reservedQuantity = $row['reserved quantity'] ;
 					$name = $row['name'] ;
 					$description = $row['description'] ;
+					$solved = $row['solved'] ;
 
 					echo '<tr class="'.$classes[$i%3].'">' ;
 
@@ -56,7 +69,10 @@
 					echo '<td>'.$description.'</td>' ;
 					echo '<td>'.$reservedQuantity.'</td>' ;
 					echo '<td>'.$date.'</td>' ;
-					echo '<td><button class="btn" onclick="showConfirmModal( \''.$name.'\', '.$reservedQuantity.'); return false;">Confirm!</button></td>' ;
+					// if ( $solved )
+					// 	echo '<td><button class="btn disabled">Confirmed!</button></td>' ;
+					// else
+					 	echo '<td><button class="btn" onclick="showConfirmModal( '.$reservedId.' ); return false;">Confirm!</button></td>' ;
 					echo '</tr>' ;
 					++ $i ;
 				}
@@ -83,10 +99,9 @@
 				$("#inspectOrder-modal").modal('show');
 			}) ;
 		});
-	function showConfirmModal ( name , quantity )
+	function showConfirmModal ( reservedId )
 	{
-		console.log ( name + "	" + quantity ) ;
-		$("#information").html ( "Confirm sending " + name + " in quantity of " + quantity + " ..." ) ;
+		$("#information").load ( "ajax/confirm_sending.php?id=" + reservedId ) ;
 		$("#inspectOrder-modal").modal('hide') ;
 		$("#confirmSending-modal").modal('show') ;
 	}
