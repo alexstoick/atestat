@@ -9,7 +9,7 @@
 	//HAVE TO IMPELEMENT THIS MOTHERFUCKING SHIT.
 	$location = 'abc' ;
 
-	$query = "UPDATE reserved SET `solved`=1 WHERE id= :id" ;
+	$query = "UPDATE reserved SET `solved`=0 WHERE id= :id" ;
 	$array = array( "id" => $id ) ;
 
 	$result = $db -> query ( $query , $array ) ;
