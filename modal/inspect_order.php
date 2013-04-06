@@ -72,7 +72,7 @@
 					if ( $solved )
 						echo '<td><button class="btn disabled">Confirmed!</button></td>' ;
 					else
-					 	echo '<td><button id='.$reservedId.' class="btn" onclick="showConfirmModal( '.$reservedId.' ); return false;">Confirm!</button></td>' ;
+					 	echo '<td><button id='.$reservedId.' class="btn" onclick="saveReservedId( '.$reservedId.' ); return false;">Confirm!</button></td>' ;
 					echo '</tr>' ;
 					++ $i ;
 				}
@@ -87,6 +87,20 @@
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	</div>
 	<div class="modal-body">
+		<form onsubmit="showConfirmModal(); return false;" class="form-horizontal" id="formLocation">
+			<div class="control-group" id="password_group">
+				<label class="control-label" for="location">Location</label>
+				<div class="controls">
+					<input type="location" id="location" placeholder="Location">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn" onclick="showConfirmModal(); return false;">Submit</button>
+				</div>
+			</div>
+		</form>
 		<div id="information"></div>
 	</div>
 </div>
@@ -99,12 +113,24 @@
 				$("#inspectOrder-modal").modal('show');
 			}) ;
 		});
-	function showConfirmModal ( reservedId )
+	var reservedId = 0 ;
+	function saveReservedId ( id )
 	{
-		$("#information").load ( "ajax/confirm_sending.php?id=" + reservedId ) ;
-
-		$("#"+reservedId).addClass ( "disabled" ).removeAttr('onclick').html ( "Confirmed!" ) ;
+		console.log ( id ) ;
+		reservedId = id ;
 		$("#inspectOrder-modal").modal('hide') ;
 		$("#confirmSending-modal").modal('show') ;
+	}
+	function showConfirmModal ( )
+	{
+		$("#"+reservedId).addClass ( "disabled" ).removeAttr('onclick').html ( "Confirmed!" ) ;
+		loc = $("#location").val () ;
+		console.log ( loc ) ;
+		url = "ajax/confirm_sending.php?id=" + reservedId + "&loc=" + loc ;
+		$("#information").load ( url ,
+								function () {
+									$("#formLocation").hide();
+									setTimeout ( function () {$("#confirmSending-modal").modal('hide');}, 1500 ) ;
+							} ) ;
 	}
 </script>
