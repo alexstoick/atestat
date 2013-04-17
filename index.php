@@ -73,6 +73,11 @@
 			check_if_loggedIn ( );
 		});
 
+		function addMove ( i )
+		{
+			$("#index-data").load ( "modal/add_move.php?id=" + i ) ;
+		}
+
 		function addToCart ( i )
 		{
 			$("#index-data").load ( "modal/add_cart.php?id=" + i ) ;

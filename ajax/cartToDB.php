@@ -18,9 +18,6 @@
 	$item -> setQuantity ( $quantity_new ) ;
 	$item -> setReserved ( $reserved_new ) ;
 
-	$result['success'] = true ;
-
-
 	$user_id = $_SESSION [ 'user_id' ] ;
 
 	$query = "INSERT INTO reserved
@@ -30,6 +27,8 @@
 
 	$db -> query ( $query , $array ) ;
 
+
+	$result['success'] = true ;
 
 	echo json_encode( $result ) ;
 ?>
