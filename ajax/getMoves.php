@@ -36,14 +36,17 @@
 	echo '<div style="padding:10px;">' ;
 	echo '<h3><b>Name:'.$item_name.'</b></h3><p>Description:'.$description.'</p><p>Stock:'.$stock.'</p><p>Reserved:'.$reserved.'</p>' ;
 
-	echo '<br>Showing moves from period:'.$from_date.' - '.$to_date;
+	echo '<br>Showing moves from period: <b>'.$from_date.' - '.$to_date.'</b>';
 
-	echo '<table>
-			<tr>
-				<td width="20%" bgcolor="#999999" style="text-align:center;"><b> Where </b></td>
-				<td width="15%" bgcolor="#999999" style="text-align:center;"><b> Time </b></td>
-				<td width="15%" bgcolor="#999999" style="text-align:center;"><b> Quantity </b></td>
-			</tr>';
+	echo'
+		<table class="table">
+			<thead style="background-color: rgb(130, 185, 236)">
+				<tr>
+					<th style="text-align:center;"> Where</th>
+					<th style="text-align:center;"> Time </th>
+					<th style="text-align:center;"> Quantity </th>
+				</tr>
+			</thead>' ;
 
 
 	$added = 0 ;
