@@ -34,6 +34,7 @@
 	var quantity_available = <?= $item->getQuantity() ?> ;
     $(function()
     {
+    	//updateRow ( <?= $item_id ?> ) ;
         $("#cart-modal").modal('show');
     });
 
@@ -69,7 +70,10 @@
 			success: function (data) {
 				$("#submitCartForm").hide();
 				$("#sucessfullyAddedToCart").show () ;
-				setTimeout ( function () {$("#cart-modal").modal('hide');}, 1500 ) ;
+				setTimeout ( function () {
+						$("#cart-modal").modal('hide');
+						updateRow ( <?= $item_id ?> ) ;
+					}, 1500 ) ;
 			}
 		}) ;
 	}

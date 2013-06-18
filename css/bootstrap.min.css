@@ -37,6 +37,7 @@ body {
 .niceSuccess { background-color:#DFF0D8; }
 .niceError { background-color: #F0D9D8; }
 .niceWarning {background-color: #EEF0D8; }
+.bold { font-weight:bold; }
 
 /*! color:#468847 - sucess
  warning:#c09853

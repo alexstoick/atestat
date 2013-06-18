@@ -81,7 +81,22 @@
 		function addToCart ( i )
 		{
 			$("#index-data").load ( "modal/add_cart.php?id=" + i ) ;
+		}
 
+		function updateRow ( item_id )
+		{
+			console.log ( 'have to update ' + item_id ) ;
+			data = 'id='+ item_id ;
+			$("#index-data").load ( "ajax/itemUpdater.php?id=" + item_id ) ;
+			
+			// $.ajax({
+			// 	type:"GET",
+			// 	url: "ajax/itemUpdater.php",
+			// 	data:data,
+			// 	success: function(data){
+			// 		console.log ( data ) ;
+			// 	}
+			// });
 		}
 
 		function loadMoves ( i )
@@ -99,7 +114,7 @@
 					if ( data["loggedIn"] == true )
 					{
 						$(".form-horizontal").hide();
-						$('#tablePlace').load("table.php?i=1&total=20" , function ()  {
+						$('#tablePlace').load( "table.php?i=1&total=20" , function ()  {
 							$("#loadingBar").hide(); } ) ;
 					}
 					else
