@@ -2,12 +2,6 @@
 
 	require_once '../config/config.php';
 
-	// var $from_time_raw , $to_time_raw ;
-	// var $from_date , $to_date ;
-
-	// var $from_year , $from_month , $from_day ;
-	// var $to_year , $to_month , $to_day ;
-
 	$from_year = $_GET['from_year'] ;
 	$from_month = $_GET['from_month'] ;
 	$from_day = $_GET['from_day'] ;
@@ -52,32 +46,30 @@
 	$added = 0 ;
 	$taken = 0 ;
 
-	$query = "SELECT * FROM moves WHERE item_id= :item_id" ;
+	$query = "SELECT * FROM moves WHERE item_id= :item_id AND :from_date < date AND date< :to_date" ;
+	$array = array ( "item_id" => $item_id , "from_date" => $from_date , "to_date" => $to_date ) ;
 
-	$query_result = $db -> query ( $query , array ( "item_id" => $item_id ) ) ;
+	$query_result = $db -> query ( $query , $array );
 
 	foreach ( $query_result as $row )
 	{
 		$date_DB = $row ['date'] ;
-		if ( $from_date <= $date_DB && $date_DB <= $to_date )
+		$movement_type = $row [ "type_move" ] ;
+		$quantity = $row [ "quantity"  ] ;
+		$where = $row [ 'where' ] ;
+		if ( $movement_type == 1 ) //intrare
 		{
-			$movement_type = $row [ "type_move" ] ;
-			$quantity = $row [ "quantity"  ] ;
-			$where = $row [ 'where' ] ;
-			if ( $movement_type == 1 ) //intrare
-			{
-				echo "<tr><td style='align:center;text-align:center;'><i class='icon-upload' />" ;
-				$added += $quantity;
-			}
-			else //iesire
-			{
-				echo "<tr><td style='align:center;text-align:center;'><i class='icon-download' />" ;
-				$taken += $quantity;
-			}
-
-			echo $where.'</td><td style="align:center;text-align:center;"> '. $date_DB.'</td><td style="align:center;text-align:center;">'. $quantity ;
-			echo '</tr>' ;
+			echo "<tr><td style='align:center;text-align:center;'><i class='icon-upload' />" ;
+			$added += $quantity;
 		}
+		else //iesire
+		{
+			echo "<tr><td style='align:center;text-align:center;'><i class='icon-download' />" ;
+			$taken += $quantity;
+		}
+
+		echo $where.'</td><td style="align:center;text-align:center;"> '. $date_DB.'</td><td style="align:center;text-align:center;">'. $quantity ;
+		echo '</tr>' ;
 	}
 		echo '</table>';
 	$total = $added + $taken ;
