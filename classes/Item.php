@@ -69,19 +69,6 @@ class Item {
 		return $this->reserved;
 	}
 
-	public function update ( )
-	{
-		$string =
-			'<td ><a onclick="addToCart('.$this->id.')" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>'.
-			'<td ><a class="btn btn-primary" onclick="loadMoves('.$this->id.')"><i class="icon-align-left"></i>Moves</a></td>'.
-			'<td ><a onclick="addMove('.$this->id.')" class="btn btn-warning"><i class="icon-ok"></i><i class="icon-remove"></i>Add move</a></td>'.
-			'<td class="expand" >'. $this->name.'</td>'.
-			'<td>'. $this->description.'</td>'.
-			'<td>'. $this->quantity. '</td>'.
-			'<td>'. $this->reserved. '</td>' ;
-		return $string;
-	}
-
 	//////STATIC functions
 
 	public static function getItemWithId ( $id )

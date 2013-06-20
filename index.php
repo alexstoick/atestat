@@ -86,17 +86,7 @@
 		function updateRow ( item_id )
 		{
 			console.log ( 'have to update ' + item_id ) ;
-			data = 'id='+ item_id ;
 			$("#index-data").load ( "ajax/itemUpdater.php?id=" + item_id ) ;
-			
-			// $.ajax({
-			// 	type:"GET",
-			// 	url: "ajax/itemUpdater.php",
-			// 	data:data,
-			// 	success: function(data){
-			// 		console.log ( data ) ;
-			// 	}
-			// });
 		}
 
 		function loadMoves ( i )
