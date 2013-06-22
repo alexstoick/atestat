@@ -1,10 +1,23 @@
 <?php
 
-	$pathToLibs = realpath(__DIR__.'/../');
-	set_include_path($pathToLibs . PATH_SEPARATOR  . get_include_path());
+	define('BASE_PATH', realpath(dirname(__FILE__)));
 
-	require_once ( "classes/Database.php" ) ;
-	require_once ( "classes/Item.php") ;
-	require_once ( "config/session.php") ;
+	spl_autoload_register('my_autoloader');
 
-	$db = new Database () ;
+	function my_autoloader($class) {
+		echo 'Including: '.$class.'<br>';
+		$filename = BASE_PATH.DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+		include $class . '.php';
+	}
+
+	use Classes\Item ;
+	use Classes\Database ;
+
+	use Classes\Session ;
+
+	$_SESSION['1'] = 'abc';
+	echo $_SESSION['1'].'<br>';
+
+	$item = Item::getItemWithId ( 1 ) ;
+	$db = new Database() ;
+	$item -> printTableLine();

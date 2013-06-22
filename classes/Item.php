@@ -1,5 +1,7 @@
 <?php
 
+namespace Classes;
+
 class Item {
 
 	private $name ;
@@ -80,5 +82,3 @@ class Item {
 		return $newItem ;
 	}
 }
-
-?>

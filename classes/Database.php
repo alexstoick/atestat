@@ -1,5 +1,9 @@
 <?php
 
+namespace Classes;
+
+use PDO;
+
 class Database {
 
 	static $db = NULL ;
@@ -24,4 +28,3 @@ class Database {
 		return $result ;
 	}
 }
-?>
