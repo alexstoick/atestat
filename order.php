@@ -53,6 +53,7 @@
                         AND order_no>0" ;
 
             $result = $db -> query ( $query ) ;
+            print_r ( $result ) ;
             $i = 0 ;
             foreach ( $result as $row )
             {

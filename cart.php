@@ -1,6 +1,6 @@
 <?php
     require_once "config/config.php" ;
-    use Views\Cart as CartView ;
+    use Pages\Cart as CartView ;
 
     $cart = new CartView ( $db ) ;
 

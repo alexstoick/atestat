@@ -49,7 +49,7 @@
 			foreach ( $this->columns as $key )
 				echo '<td>'.$row[$key]."</td>";
 			echo '</tr>' ;
-}
+		}
 
 		function TableFooter ()
 		{

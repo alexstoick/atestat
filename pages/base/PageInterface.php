@@ -1,6 +1,6 @@
 <?php
 
-namespace Views\Base;
+namespace Pages\Base;
 
 interface PageInterface {
 	function printPage ( ) ;
