@@ -1,8 +1,13 @@
 <?php
-	require_once ( "config/session.php" ) ;
-	require_once ( "config/config.php" ) ;
-	require_once ( "config/functions.php" ) ;
-	confirm_loggedIn ( ) ;
+	require_once"config.php" ;
+
+	use Classes\Helper;
+	use Classes\Database;
+	use Classes\Item;
+
+	$helper = new Helper ();
+
+	$logged_in = $helper -> confirm_loggedIn ( ) ;
 ?>
 <head>
 <link href="css/footable-0.1.css" rel="stylesheet" type="text/css" />
@@ -14,6 +19,8 @@
 	$final = $_GET ['total'];
 
 	$query = "SELECT * FROM items WHERE `quantity`!= 0 AND :start <=`id` AND `id`< :final" ;
+
+	$db = new Database ( );
 
 	$result = $db -> query ( $query , array ( "start" => $start , "final" => $final ) ) ;
 ?>
