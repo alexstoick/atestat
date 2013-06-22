@@ -6,7 +6,6 @@
 
 		function printView ( )
 		{
-			echo 'basic table view' ;
 			$this -> TableHeader ( ) ;
 			$this -> TableContent () ;
 			$this -> TableFooter () ;

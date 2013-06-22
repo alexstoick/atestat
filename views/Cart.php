@@ -7,9 +7,17 @@
 
 	class Cart extends Base\BasicPage implements Base\PageInterface {
 
+		private $rows ;
+
 		public function printPage ( )
 		{
-			$this -> print_table () ;
+			$keys = array( 'reserved quantity' , 'username' , 'item description' , 'quantity' , 'date' ) ;
+
+			$table = new Table ( $keys , $this -> rows) ;
+
+			$table -> printView ( );
+
+			//$this -> print_table () ;
 			echo '
 					<button class="btn">Place order</button>
 					<button class="btn disabled"> Export!</button>
@@ -38,7 +46,6 @@
 					AND items.id = reserved.item_id AND `order_no`=0" ;
 
 			$this->rows = $db -> query ( $query , array ( "user_id" => $user_id ) ) ;
-			print_r ( $this->rows ) ;
 		}
 
 		public function TableHeader ( )
