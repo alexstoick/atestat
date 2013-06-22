@@ -48,14 +48,39 @@
 			echo '</tr>' ;
 		}
 
-		function printPage ()
+
+		function additionalJS ( )
 		{
 
+			echo '
+			    <script type="text/javascript">
+
+					function showOrder ( orderNo )
+					{
+						$("#order-data").load ( "modal/inspect_order.php?orderNo=" + orderNo ) ;
+					}
+
+				</script>' ;
+
+		}
+
+		function printPage ()
+		{
 			$this->columns = array ( 'order number' , 'username' ) ;
 			$table = new Table ( $this->columns , $this->rows ) ;
+
 			$table->TableHeader ( );
 			$this ->TableContent ( ) ;
 			$table->TableFooter ( );
+
+			$this -> additionalJS () ;
+
+			echo '
+					<div id="order-data">
+					</div>
+				';
+
+			$this->print_Ending();
 		}
 
 	}

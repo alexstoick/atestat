@@ -58,9 +58,6 @@
 					</table>';
 		}
 
-
-		//\ucwords
-
 		function __construct ( $columns , $rows )
 		{
 			$this -> columns = $columns ;

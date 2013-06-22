@@ -58,7 +58,7 @@ class BasicPage {
 		echo '</html>' ;
 	}
 
-	function print_page ()
+	function print_Ending ()
 	{
 		$this -> print_js () ;
 		$this -> print_finalMarkup () ;

@@ -19,12 +19,11 @@
 
 			$table -> printView ( );
 
-			//$this -> print_table () ;
 			echo '
 					<button class="btn">Place order</button>
 					<button class="btn disabled"> Export!</button>
 				';
-			$this -> print_page () ;
+			$this -> print_Ending () ;
 		}
 
 		function __construct ( Database $db )
