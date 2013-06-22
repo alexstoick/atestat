@@ -1,7 +1,5 @@
 * find a better way to update the page
 
-1) abstract class with find method
-2) Item class better organized
 3) Moves class
 4) Orders class
 5) Cart class
