@@ -9,6 +9,7 @@
 	class Order extends Base\BasicPage implements Base\PageInterface {
 
 		private $rows ;
+		private $columns ;
 
 		function __construct ( Database $db )
 		{
@@ -22,18 +23,39 @@
 			$this->rows = $db -> query ( $query ) ;
 		}
 
-		function print_table ()
+		function TableContent ()
 		{
+			$i = 0 ;
+			foreach ( $this->rows as $row )
+			{
+				$this -> TableLine ( $row , $i ) ;
+				$i ++ ;
+			}
 
+		}
+
+		function TableLine ( $row , $i )
+		{
+			if ( $i % 2 )
+				echo '<tr class="success">' ;
+			else
+				echo '<tr class="error">' ;
+
+			foreach ( $this->columns as $key )
+				if ( $key == 'order number' )
+					echo '<td style="text-align:center; line-height: 10px;"><a href="#" onclick="showOrder('.$row[$key].')">'.$row[$key].'</a></td>' ;
+				echo '<td style="line-height: 10px;">'.$row[$key]."</td>";
+			echo '</tr>' ;
 		}
 
 		function printPage ()
 		{
 
-			$keys = array ( 'order number' , 'username' ) ;
-			$table = new Table ( $keys , $this->rows ) ;
-			$table->printView () ;
-
+			$this->columns = array ( 'order number' , 'username' ) ;
+			$table = new Table ( $this->columns , $this->rows ) ;
+			$table->TableHeader ( );
+			$this ->TableContent ( ) ;
+			$table->TableFooter ( );
 		}
 
 	}

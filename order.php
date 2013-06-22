@@ -65,7 +65,7 @@
                 else
                     echo '<tr class="error">' ;
 
-                echo '<td style="text-align:center; line-height: 10px;"><a href="#" onclick="showOrder('.$order_no.')">'.$order_no.'</a></td>' ;
+                echo '<td style="text-align:center; line-height: 10px;" class="link" onclick="showOrder('.$order_no.')">'.$order_no.'</td>' ;
                 echo '<td style="text-align:center; line-height: 10px;">'.$username.'</td>' ;
                 echo '</tr>' ;
                 ++ $i;
