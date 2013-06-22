@@ -18,6 +18,6 @@
 	$_SESSION['1'] = 'abc';
 	echo $_SESSION['1'].'<br>';
 
-	$item = Item::getItemWithId ( 1 ) ;
-	$db = new Database() ;
+	$item = Item::find(1);
+	//$item = $item->find(1);
 	$item -> printTableLine();

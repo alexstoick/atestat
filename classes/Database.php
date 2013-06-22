@@ -6,7 +6,7 @@ use PDO;
 
 class Database {
 
-	static $db = NULL ;
+	protected static $db = NULL ;
 
 	public function __construct ( )
 	{
@@ -20,7 +20,7 @@ class Database {
 		}
 	}
 
-	public function query ( $query , $params = array () )
+	static public function query ( $query , $params = array () )
 	{
 		$prepared_statement = self::$db -> prepare ($query) ;
 		$prepared_statement -> execute ( $params ) ;
