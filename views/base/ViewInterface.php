@@ -2,6 +2,6 @@
 
 namespace Views\Base;
 
-interface View {
+interface ViewInterface {
 	function printView ( ) ;
 }

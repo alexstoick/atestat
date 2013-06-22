@@ -10,6 +10,8 @@
 		include $class . '.php';
 	}
 
-	use Classes\Session;
+	use Views\Cart as CartView;
 
-	$session = new Session();
+	$cart = new CartView () ;
+
+	$cart -> printView () ;

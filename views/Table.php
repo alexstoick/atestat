@@ -5,7 +5,7 @@
 	use Classes\Database;
 	use Classes\Item;
 
-	class Table implements Base\View {
+	class Table implements Base\ViewInterface {
 
 		private $rows;
 
