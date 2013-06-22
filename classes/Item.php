@@ -11,7 +11,7 @@ class Item implements Base\Object {
 	private $id ;
 	protected static $db ;
 
-	/**
+	/***
 		Interface functions
 	*/
 

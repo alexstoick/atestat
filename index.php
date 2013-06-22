@@ -1,6 +1,8 @@
 <?php
 
-	require_once ( "config/functions.php" ) ;
+	require 'config.php' ;
+	use Classes\Helper ;
+	$helper = new Helper ();
 
 ?>
 
@@ -31,7 +33,7 @@
 
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
-		<?php  echo show_menu ( $_SERVER["PHP_SELF"] ) ; ?>
+		<?php  echo $helper -> show_menu ( $_SERVER["PHP_SELF"] ) ; ?>
 	</div>
 	<div class="container">
 		<div id="tablePlace">
