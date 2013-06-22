@@ -5,7 +5,7 @@
 	use Classes\Database;
 	use Classes\Item;
 
-	use Views\Table as TableView;
+	use Views\IndexTable as TableView;
 
 	$helper = new Helper ();
 

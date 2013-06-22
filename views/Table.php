@@ -2,50 +2,56 @@
 
 	namespace Views;
 
-	use Classes\Database;
-	use Classes\Item;
-
 	class Table implements Base\ViewInterface {
 
-		private $rows;
-
-		function __construct ( $start , $final , Database $db )
+		function printView ( )
 		{
-			$this ->start = $start ;
-			$this ->final = $final ;
-
-			$query = "SELECT * FROM items WHERE `quantity`!= 0 AND :start <=`id` AND `id`< :final" ;
-			$array = array ( "start" => $start , "final" => $final ) ;
-			$this->rows = $db -> query ( $query ,  $array ) ;
+			echo 'basic table view' ;
+			$this -> TableHeader ( ) ;
+			$this -> TableContent () ;
+			$this -> TableFooter () ;
 		}
+
 
 		function TableHeader ( )
 		{
 			echo '
-			<h4>Displaying items from '.$this->start.' to '.$this->final.' </h4>
-			<table class="footable">
-				<thead>
+			<table class="table">
+				<thead style="background-color: rgb(130, 185, 236)">
 					<tr>
-						<th data-hide="phone,tablet"> Cart</th>
-						<th data-hide="phone,tablet"> Moves</th>
-						<th data-hide="phone,tablet"> Add move</th>
-						<th data-class="expand"> Name</th>
-						<th > Description</th>
-						<th data-hide="phone" > Quantity</th>
-						<th data-hide="phone,tablet"> Reserved</th>
-					</tr>
+					' ;
+
+			foreach ( $this->columns as $column )
+				echo '<th style="text-align:center;">'.\ucwords ( $column ).'</td>';
+
+			echo	'</tr>
 				</thead>
 			<tbody>' ;
 		}
 
 		function TableContent ()
 		{
+			$i = 0 ;
 			foreach ( $this->rows as $row )
 			{
-				$item = new Item ( $row ) ;
-				$this -> TableLine ( $item ) ;
+				$this -> TableLine ( $row , $i ) ;
+				$i ++ ;
 			}
+
 		}
+
+		function TableLine ( $row , $i )
+		{
+			if ( $i % 2 )
+				echo '<tr class="success">' ;
+			else
+				echo '<tr class="error">' ;
+
+			foreach ( $this->columns as $key )
+				echo '<td>'.$row[$key]."</td>";
+			echo '</tr>' ;
+}
+
 		function TableFooter ()
 		{
 			echo '
@@ -53,26 +59,13 @@
 					</table>';
 		}
 
-		function TableLine ( Item $item )
+
+		//\ucwords
+
+		function __construct ( $columns , $rows )
 		{
-			echo '<tr id="linia'.$item->getId().'" style="line-height:15px">' ;
-
-			echo '<td ><a onclick="addToCart('.$item->getId().')" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>' ;
-			echo '<td ><a class="btn btn-primary" onclick="loadMoves('.$item->getId().')"><i class="icon-align-left"></i>Moves</a></td>';
-			echo '<td ><a onclick="addMove('.$item->getId().')" class="btn btn-warning"><i class="icon-ok"></i><i class="icon-remove"></i>Add move</a></td>';
-			echo '<td class="expand" >'. $item->getName().'</td>' ;
-			echo '<td>'. $item->getDescription().'</td>';
-			echo '<td id="quantity'.$item->getId().'">'. $item->getQuantity(). '</td>';
-			echo '<td id="reserved'.$item->getId().'">'. $item->getReserved(). '</td>';
-
-			echo '</tr>' ;
-		}
-
-		function printView ( )
-		{
-			$this -> TableHeader ( );
-			$this -> TableContent ( ) ;
-			$this -> TableFooter () ;
+			$this -> columns = $columns ;
+			$this -> rows = $rows ;
 		}
 
 	}

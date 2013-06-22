@@ -1,8 +1,18 @@
 <?php
 
 	require "config/config.php" ;
-	use Views\Cart as CartView;
+	use Views\Table ;
 
-	$cart = new CartView ( $db ) ;
+	echo '<link href="css/bootstrap.min.css" rel="stylesheet">';
+	$columns = array ( 'nume' , 'varsta' ) ;
+	$rows = [] ;
+	$row[ 'nume' ] = 'alex' ;
+	$row ['varsta'] = 19 ;
+	array_push ( $rows , $row ) ;
+	$row[ 'nume' ] = 'vlad' ;
+	$row ['varsta'] = 17 ;
+	array_push ( $rows , $row ) ;
 
-	$cart -> printPage () ;
+	$cart = new Table ( $columns , $rows ) ;
+
+	$cart -> printView () ;

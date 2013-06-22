@@ -17,6 +17,30 @@
 			$this -> print_page () ;
 		}
 
+		function __construct ( Database $db )
+		{
+
+			//selecting the items that are reserved by this user and are not on an order.
+			//(aka have NOT been 'checkouted')
+			//
+			//Reserved
+			//id , item_id, user_id, quantity-reserved, solved, order_no
+			//Items
+			//quantity, item_code
+
+			parent::__construct();
+
+			$user_id = $_SESSION['user_id'];
+
+			$query = "SELECT reserved.quantity AS  `reserved quantity` , users.username, items.item_code AS `item description`, items.quantity, reserved.date
+					FROM reserved, users, items
+					WHERE  `user_id` ='".$user_id."'
+					AND items.id = reserved.item_id AND `order_no`=0" ;
+
+			$this->rows = $db -> query ( $query , array ( "user_id" => $user_id ) ) ;
+			print_r ( $this->rows ) ;
+		}
+
 		public function TableHeader ( )
 		{
 			echo '
@@ -33,27 +57,14 @@
 			' ;
 		}
 
-		function __construct ( Database $db )
+		function TableContent ( )
 		{
-
-			//selecting the items that are reserved by this user and are not on an order.
-			//(aka have NOT been 'checkouted')
-			//
-			//Reserved
-			//id , item_id, user_id, quantity-reserved, solved, order_no
-			//Items
-			//quantity, item_code
-
-			parent::__construct();
-
-			$user_id = $_SESSION['user_id'];
-
-			$query = "SELECT reserved.item_id, reserved.quantity AS  `reserved quantity` , users.username, items.item_code, items.quantity, reserved.date
-					FROM reserved, users, items
-					WHERE  `user_id` ='".$user_id."'
-					AND items.id = reserved.item_id AND `order_no`=0" ;
-
-			$this->rows = $db -> query ( $query , array ( "user_id" => $user_id ) ) ;
+			$i = 0 ;
+			foreach ( $this->rows as $row )
+			{
+				$this -> TableLine ( $row , $i ) ;
+				$i ++ ;
+			}
 		}
 
 		function TableLine ( $row , $i )
@@ -73,16 +84,6 @@
 			echo '<td style="align:center;text-align:center;">'.$quantity_reserved.'</td>' ;
 			echo '<td style="align:center;text-align:center;">'.$date.'</td>' ;
 			echo '</tr>' ;
-		}
-
-		function TableContent ( )
-		{
-			$i = 0 ;
-			foreach ( $this->rows as $row )
-			{
-				$this -> TableLine ( $row , $i ) ;
-				$i ++ ;
-			}
 		}
 
 		function TableFooter ()
