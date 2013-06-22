@@ -2,12 +2,14 @@
 
 	require_once '../config/config.php';
 
+	use Classes\Item;
+
 	$id = $_POST['item_id'] ;
 	$location = $_POST['location'] ;
 	$quantity = $_POST['quantity'] ;
 	$type_move  = $_POST['typeMove'] ;
 
-	$item = Item::getItemWithId ( $id ) ;
+	$item = Item::find ( $id ) ;
 
 	if ( $type_move == 1 )
 		$quantity_new = $item->getQuantity () + $quantity ;

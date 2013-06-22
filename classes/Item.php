@@ -1,7 +1,6 @@
 <?php
 
 namespace Classes;
-use Classes\Base\Object;
 
 class Item implements Base\Object {
 

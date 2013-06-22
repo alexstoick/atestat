@@ -1,9 +1,6 @@
 <?php
 
 	require 'config/config.php' ;
-	use Classes\Helper ;
-	$helper = new Helper ();
-
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +104,8 @@
 					{
 						$(".form-horizontal").hide();
 						$('#tablePlace').load( "table.php?i=1&total=20" , function ()  {
-							$("#loadingBar").hide(); } ) ;
+							$("#loadingBar").hide();
+							$('.footable').footable(); } ) ;
 					}
 					else
 					{
@@ -156,6 +154,8 @@
 
 	</script>
 
+	<script type="text/javascript" src="js/footable-0.1.js" >
+	</script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

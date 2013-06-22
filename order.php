@@ -1,7 +1,5 @@
 <?php
-    require_once ( "config/session.php" ) ;
-    require_once ( "config/config.php") ;
-    require_once ( "config/functions.php" ) ;
+    require_once "config/config.php" ;
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +28,7 @@
 
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <?php  echo show_menu ( $_SERVER["PHP_SELF"] ) ; ?>
+        <?php  echo $helper -> show_menu ( $_SERVER["PHP_SELF"] ) ; ?>
     </div>
     <div class="container">
 
@@ -76,7 +74,6 @@
         </table>
         <div id="order-data">
         </div>
-        <button class="btn">Place order</button>
         <button class="btn disabled"> Export!</button>
     </div> <!-- /container -->
 

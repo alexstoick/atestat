@@ -2,9 +2,11 @@
 
 	require_once '../config/config.php';
 
+	use Classes\Item;
+
 	$item_id = $_GET['id'] ;
 
-	$item = Item::getItemWithId ( $item_id ) ;
+	$item = Item::find ( $item_id ) ;
 ?>
 
 <div id="moves-modal" class="modal hide fade" aria-hidden="true">
@@ -90,7 +92,10 @@
 				console.log ( "333") ;
 				$("#submitMovesForm").hide();
 				$("#sucessfullyAddedMoves").show () ;
-				setTimeout ( function () {$("#moves-modal").modal('hide');}, 1500 ) ;
+				setTimeout ( function () {
+						$("#moves-modal").modal('hide');
+						updateRow ( <?= $item_id ?> ) ;
+					}, 1500 ) ;
 			}
 		}) ;
 	}

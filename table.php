@@ -9,9 +9,6 @@
 
 	$logged_in = $helper -> confirm_loggedIn ( ) ;
 ?>
-<head>
-<link href="css/footable-0.1.css" rel="stylesheet" type="text/css" />
-</head>
 <body>
 <?php
 
@@ -50,15 +47,5 @@
 
 </tbody>
 </table>
-
-<script type="text/javascript" src="js/footable-0.1.js" >
-</script>
-<script type="text/javascript">
-		$(function() {
-		  $('.footable').footable();
-		});
-</script>
-
-
 </body>
 </html>

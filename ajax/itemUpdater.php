@@ -2,10 +2,12 @@
 
 	require_once '../config/config.php';
 
+	use Classes\Item;
+
 	$item_id = $_GET['id'];
 	echo 'winning' ;
 
-	$item = Item::getItemWithId ( $item_id ) ;
+	$item = Item::find ( $item_id ) ;
 ?>
 
 <script type="text/javascript">

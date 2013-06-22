@@ -2,6 +2,8 @@
 
 	require_once '../config/config.php';
 
+	use Classes\Item;
+
 	$from_year = $_GET['from_year'] ;
 	$from_month = $_GET['from_month'] ;
 	$from_day = $_GET['from_day'] ;
@@ -21,7 +23,7 @@
 	//need to get some basic information about the object: number in stock & number reserved
 	//also need to get the description of the item.
 
-	$item = Item::getItemWithId ( $item_id ) ;
+	$item = Item::find ( $item_id ) ;
 
 	$item_name = $item -> getName ( ) ;
 	$description = $item -> getDescription () ;

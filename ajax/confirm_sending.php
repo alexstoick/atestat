@@ -4,7 +4,6 @@
 
 	$id = $_GET['id'] ;
 
-	//HAVE TO IMPELEMENT THIS MOTHERFUCKING SHIT.
 	$location = $_GET['loc'] ;
 
 

@@ -1,14 +1,15 @@
 <?php
 
 	require_once '../config/config.php';
-	require_once '../config/session.php';
+
+	use Classes\Item;
 
 	$result = array ( );
 
 	$item_id = $_POST ['item_id'] ;
 	$reserveQuantity = $_POST ['reserveQuantity'] ;
 
-	$item = Item::getItemWithId ( $item_id ) ;
+	$item = Item::find ( $item_id ) ;
 
 	//have to add reserved quantity, and substract that from available quantity.
 
