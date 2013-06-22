@@ -5,7 +5,11 @@
 	spl_autoload_register('my_autoloader');
 
 	function my_autoloader($class) {
-		echo 'Including: '.$class.'<br>';
+		//echo 'Including: '.$class.'<br>';
 		$filename = BASE_PATH.DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
 		include $class . '.php';
 	}
+
+	use Classes\Session;
+
+	$session = new Session();

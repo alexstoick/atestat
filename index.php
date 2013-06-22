@@ -1,6 +1,6 @@
 <?php
 
-	require 'config.php' ;
+	require 'config/config.php' ;
 	use Classes\Helper ;
 	$helper = new Helper ();
 

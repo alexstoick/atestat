@@ -1,6 +1,7 @@
 <?php
-	require_once ( "../config/session.php") ;
-	require_once ( "../config/config.php" ) ;
+	require '../config/config.php' ;
+
+	use Classes\Database;
 
 	$result = array ( ) ;
 
@@ -12,6 +13,7 @@
 
 		$query = "SELECT id FROM users WHERE `username`= :username AND `hashed_password`= :hashed_password LIMIT 1";
 
+		$db = new Database ();
 		$query_result = $db -> query ( $query , array ( "username" => $username , "hashed_password" => $hashed_password ) ) ;
 
 		if ( $query_result )

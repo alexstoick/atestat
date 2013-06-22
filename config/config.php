@@ -1,11 +1,17 @@
+
+
 <?php
 
-	$pathToLibs = realpath(__DIR__.'/../');
-	set_include_path($pathToLibs . PATH_SEPARATOR  . get_include_path());
+	define('BASE_PATH', realpath(__DIR__.'/../'));
 
-	require_once ( "classes/Database.php" ) ;
-	require_once ( "classes/Item.php") ;
-	require_once ( "config/session.php") ;
+	spl_autoload_register('autoloader');
 
-	$db = new Database () ;
-?>
+	function autoloader($class) {
+		$filename = BASE_PATH.DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+		//echo $filename;
+		include $filename ;
+	}
+
+	use Classes\Session;
+
+	$session = new Session();
