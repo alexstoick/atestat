@@ -1,22 +1,31 @@
 <?php
 
-	/*** NEEDS REFACTORING ****/
-
 	namespace Views;
 
 	use Classes\Database;
-	use Classes\Item;
 
-	class IndexTable implements Base\ViewInterface {
+	class IndexTable extends Base\BaseTable implements Base\ViewInterface {
 
-		private $rows;
+		function printView ( )
+		{
+			$this -> TableHeader ( );
+			$this -> TableContent ( ) ;
+			$this -> TableFooter () ;
+		}
 
 		function __construct ( $start , $final , Database $db )
 		{
 			$this ->start = $start ;
 			$this ->final = $final ;
 
-			$query = "SELECT * FROM items WHERE `quantity`!= 0 AND :start <=`id` AND `id`< :final" ;
+			$query = "SELECT
+							id,
+							item_code AS `name`,
+							item_description AS `description`,
+							quantity,
+							reserved
+						FROM items
+						WHERE `quantity`!= 0 AND :start <=`id` AND `id`< :final" ;
 			$array = array ( "start" => $start , "final" => $final ) ;
 			$this->rows = $db -> query ( $query ,  $array ) ;
 		}
@@ -40,41 +49,18 @@
 			<tbody>' ;
 		}
 
-		function TableContent ()
+		function TableLine ( $item , $i )
 		{
-			foreach ( $this->rows as $row )
-			{
-				$item = new Item ( $row ) ;
-				$this -> TableLine ( $item ) ;
-			}
-		}
-		function TableFooter ()
-		{
-			echo '
-					</tbody>
-					</table>';
-		}
+			echo '<tr id="linia'.$item["id"].'" style="line-height:15px">' ;
 
-		function TableLine ( Item $item )
-		{
-			echo '<tr id="linia'.$item->getId().'" style="line-height:15px">' ;
-
-			echo '<td ><a onclick="addToCart('.$item->getId().')" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>' ;
-			echo '<td ><a class="btn btn-primary" onclick="loadMoves('.$item->getId().')"><i class="icon-align-left"></i>Moves</a></td>';
-			echo '<td ><a onclick="addMove('.$item->getId().')" class="btn btn-warning"><i class="icon-ok"></i><i class="icon-remove"></i>Add move</a></td>';
-			echo '<td class="expand" >'. $item->getName().'</td>' ;
-			echo '<td>'. $item->getDescription().'</td>';
-			echo '<td id="quantity'.$item->getId().'">'. $item->getQuantity(). '</td>';
-			echo '<td id="reserved'.$item->getId().'">'. $item->getReserved(). '</td>';
+			echo '<td ><a onclick="addToCart('.$item["id"].')" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>' ;
+			echo '<td ><a class="btn btn-primary" onclick="loadMoves('.$item["id"].')"><i class="icon-align-left"></i>Moves</a></td>';
+			echo '<td ><a onclick="addMove('.$item["id"].')" class="btn btn-warning"><i class="icon-ok"></i><i class="icon-remove"></i>Add move</a></td>';
+			echo '<td class="expand" >'. $item["name"].'</td>' ;
+			echo '<td>'. $item["description"].'</td>';
+			echo '<td id="quantity'.$item["id"].'">'. $item["quantity"]. '</td>';
+			echo '<td id="reserved'.$item["id"].'">'. $item["reserved"]. '</td>';
 
 			echo '</tr>' ;
 		}
-
-		function printView ( )
-		{
-			$this -> TableHeader ( );
-			$this -> TableContent ( ) ;
-			$this -> TableFooter () ;
-		}
-
 	}

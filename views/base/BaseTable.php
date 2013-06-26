@@ -20,7 +20,16 @@
 			<tbody>' ;
 		}
 
-		abstract public function TableContent() ;
+		function TableContent ()
+		{
+			$i = 0 ;
+			foreach ( $this->rows as $row )
+			{
+				$this -> TableLine ( $row , $i ) ;
+				$i ++ ;
+			}
+		}
+
 		abstract public function TableLine( $row , $i ) ;
 
 		function TableFooter ()

@@ -11,17 +11,6 @@
 			$this -> TableFooter () ;
 		}
 
-		function TableContent ()
-		{
-			$i = 0 ;
-			foreach ( $this->rows as $row )
-			{
-				$this -> TableLine ( $row , $i ) ;
-				$i ++ ;
-			}
-
-		}
-
 		function TableLine ( $row , $i )
 		{
 			if ( $i % 2 )
