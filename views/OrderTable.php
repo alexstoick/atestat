@@ -2,7 +2,7 @@
 
 	namespace Views;
 
-	class Table extends Base\BaseTable implements Base\ViewInterface {
+	class OrderTable extends Base\BaseTable implements Base\ViewInterface {
 
 		function printView ( )
 		{
@@ -30,8 +30,12 @@
 				echo '<tr class="error">' ;
 
 			foreach ( $this->columns as $key )
-				echo '<td>'.$row[$key]."</td>";
+				if ( $key == 'order number' )
+					echo '<td style="text-align:center; line-height: 10px;"><a href="#" onclick="showOrder('.$row[$key].')">'.$row[$key].'</a></td>' ;
+				echo '<td style="line-height: 10px;">'.$row[$key]."</td>";
 			echo '</tr>' ;
 		}
+
+
 
 	}

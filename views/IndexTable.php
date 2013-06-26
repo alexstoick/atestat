@@ -1,5 +1,7 @@
 <?php
 
+	/*** NEEDS REFACTORING ****/
+
 	namespace Views;
 
 	use Classes\Database;
