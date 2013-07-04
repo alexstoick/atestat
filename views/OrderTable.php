@@ -24,7 +24,4 @@
 				echo '<td style="line-height: 10px;">'.$row[$key]."</td>";
 			echo '</tr>' ;
 		}
-
-
-
 	}

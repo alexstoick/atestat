@@ -3,5 +3,3 @@
     use Pages\Cart as CartView ;
 
     $cart = new CartView ( $db ) ;
-
-	$cart -> printPage () ;

@@ -3,5 +3,3 @@
     use Pages\Order as OrderView ;
 
     $cart = new OrderView ( $db ) ;
-
-	$cart -> printPage () ;

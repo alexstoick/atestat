@@ -21,6 +21,8 @@
 						AND order_no>0" ;
 
 			$this->rows = $db -> query ( $query ) ;
+
+			$this -> printPage () ;
 		}
 
 		function additionalJS ( )

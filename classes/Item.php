@@ -75,22 +75,4 @@ class Item implements Base\Object {
 	{
 		return $this->reserved;
 	}
-
-
-	// public function printTableLine ()
-	// {
-
-	// 	echo '<tr id="linia'.$this->id.'" style="line-height:15px">' ;
-
-	// 	echo '<td ><a onclick="addToCart('.$this->id.')" class="btn btn-info"><i class="icon-shopping-cart"></i>Add to cart</a></td>' ;
-	// 	echo '<td ><a class="btn btn-primary" onclick="loadMoves('.$this->id.')"><i class="icon-align-left"></i>Moves</a></td>';
-	// 	echo '<td ><a onclick="addMove('.$this->id.')" class="btn btn-warning"><i class="icon-ok"></i><i class="icon-remove"></i>Add move</a></td>';
-	// 	echo '<td class="expand" >'. $this->name.'</td>' ;
-	// 	echo '<td>'. $this->description.'</td>';
-	// 	echo '<td id="quantity'.$this->id.'">'. $this->quantity. '</td>';
-	// 	echo '<td id="reserved'.$this->id.'">'. $this->reserved. '</td>';
-
-	// 	echo '</tr>' ;
-	// }
-
 }
